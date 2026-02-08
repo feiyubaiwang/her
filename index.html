@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试适合你看的小众女性电影</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Tailwind 配置优化
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Microsoft YaHei', '微软雅黑', 'sans-serif'],
+                    },
+                    colors: {
+                        'muse-bg': '#BB2649',   // 背景维持深红
+                        'muse-text': '#F2F2F2', // 文字改为雾白
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* 微软雅黑字体设置 */
+
+        /* 全局字体与配色设置 */
+        :root {
+            --primary-font: 'Microsoft YaHei', '微软雅黑', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', 'Arial', sans-serif;
+        }
+
+        /* 强制所有元素使用微软雅黑字体 */
+        * {
+            font-family: var(--primary-font) !important;
+            font-synthesis: none;
+            -webkit-text-size-adjust: 100%;
+        }
+        
+        body {
+            font-family: var(--primary-font) !important;
+            background-color: #BB2649; /* 背景深红 */
+            color: #F2F2F2;            /* 文字雾白 */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* 确保所有文本元素都使用正确字体 */
+        h1, h2, h3, h4, h5, h6, p, span, div, button, input, textarea, select, label, a {
+            font-family: var(--primary-font) !important;
+        }
+
+        /* 增强字体渲染 */
+        body, * {
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* 移动设备字体加载优化 */
+        @media (max-width: 768px) {
+            body {
+                font-family: 'Microsoft YaHei', '微软雅黑', sans-serif !important;
+            }
+        }
+
+        /* 选中文本的颜色反转 */
+        ::selection {
+            background-color: #F2F2F2;
+            color: #BB2649; 
+        }
+
+        /* 动画类 */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        .fade-out {
+            animation: fadeOut 0.5s ease-in forwards;
+        }
+
+        .slide-up {
+            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(40px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* 选项卡 hover 效果 */
+        .option-card {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            background-color: transparent; 
+            border-color: rgba(242, 242, 242, 0.3); /* 浅色边框 */
+            color: #F2F2F2;
+        }
+        .option-card:hover {
+            background-color: rgba(242, 242, 242, 0.1); /* hover时微微泛白 */
+            transform: translateY(-2px);
+            border-color: #F2F2F2;
+        }
+        .option-card.selected {
+            background-color: #F2F2F2; /* 选中变白 */
+            color: #BB2649;            /* 文字变深红 */
+            border-color: #F2F2F2;
+        }
+
+        /* 加载动画 */
+        .loader-line {
+            width: 0%;
+            height: 1px;
+            background-color: #F2F2F2;
+            transition: width 0.3s ease;
+        }
+
+        /* 隐藏滚动条但保留功能 */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* 按钮通用样式 */
+        .btn-primary {
+            border-color: #F2F2F2;
+            color: #F2F2F2;
+        }
+        .btn-primary:hover {
+            background-color: #F2F2F2;
+            color: #BB2649; /* 悬停反转 */
+        }
+
+        /* 输入框样式去除默认focus框 */
+        input:focus {
+            outline: none;
+        }
+        
+        /* 输入框 placeholder 颜色 */
+        ::placeholder {
+            color: rgba(242, 242, 242, 0.4);
+        }
+    </style>
+</head>
+<body id="main-body" class="min-h-screen flex flex-col items-center justify-center overflow-x-hidden">
+
+    <!-- 背景装饰 -->
+    <div id="bg-decoration" class="fixed top-0 left-0 w-full h-full z-[-1] opacity-10 pointer-events-none overflow-hidden">
+        <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-gradient-to-br from-[#F2F2F2] to-transparent rounded-full blur-3xl"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-gradient-to-tl from-[#F2F2F2] to-transparent rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- 主容器 -->
+    <main id="app-container" class="w-full max-w-2xl px-6 py-12 relative min-h-[80vh] flex flex-col justify-center">
+        
+        <!-- 1. 欢迎页 (增加卡片容器) -->
+        <section id="landing-page" class="w-full flex justify-center slide-up">
+            <div class="w-full max-w-lg border border-[#F2F2F2]/30 p-8 md:p-12 bg-transparent backdrop-blur-sm shadow-xl">
+                <div class="space-y-4 text-left">
+                    <h2 class="text-2xl md:text-3xl font-normal leading-tight text-muse-text">
+                        你好，
+                    </h2>
+                </div>
+                
+                <p class="max-w-md leading-relaxed text-xl md:text-2xl tracking-wide opacity-80 text-muse-text mt-6 text-left">
+                    回答 10 个小问题，我将为你匹配此刻最适合你观看的小众女性电影。
+                </p>
+
+                <!-- 姓名输入框 -->
+                <div class="w-full mt-12 relative text-left">
+                    <input type="text" id="user-name-input" placeholder="你的名字" 
+                           onkeypress="handleKeyPress(event)"
+                           class="w-full bg-transparent border-b border-[#F2F2F2]/50 text-left text-xl p-2 text-muse-text focus:border-[#F2F2F2] transition-colors pb-2 pl-0 placeholder-[#F2F2F2]/40">
+                </div>
+
+                <div class="text-left mt-12">
+                    <button onclick="startQuiz()" class="px-12 py-4 border text-sm tracking-widest transition-colors duration-500 ease-out uppercase btn-primary">
+                        开始回答
+                    </button>
+                </div>
+
+                <!-- 海报滚动播放卡片 -->
+                <div class="mt-12 w-full border border-[#F2F2F2]/30 p-6 bg-transparent backdrop-blur-sm">
+                    <div id="poster-carousel" class="flex overflow-x-auto space-x-4 py-2 no-scrollbar" style="min-height: 180px;">
+                        <!-- 动态生成本地电影海报 -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            // 本地电影海报列表
+            const moviePosters = [
+                "45周年.jpg",
+                "世界上最糟糕的人.jpg",
+                "二十世纪女人.jpg",
+                "从不很少有时总是.jpg",
+                "偶然与想象.webp",
+                "同心难改.webp",
+                "同窗的爱.webp",
+                "圣奥梅尔.webp",
+                "圣蛛.webp",
+                "在哥伦布.webp",
+                "夏日细语.webp",
+                "奥兰多.webp",
+                "小公女.webp",
+                "小妈妈.webp",
+                "弗兰西斯哈.jpg",
+                "我是爱.webp",
+                "日日是好日.webp",
+                "正发生.webp",
+                "澄沙之味.webp",
+                "燃烧.webp",
+                "独自夜归的女孩.webp",
+                "珀尔.webp",
+                "第一头牛.webp",
+                "系统破坏者.webp",
+                "肉与灵.jpg",
+                "脸庞村庄.webp",
+                "花神咖啡馆.jpg",
+                "蜂鸟.webp",
+                "野马.jpg",
+                "雏菊.webp"
+            ];
+
+            // 生成随机排序的海报
+            function generateRandomPosters() {
+                const carousel = document.getElementById('poster-carousel');
+                carousel.innerHTML = '';
+                
+                // 随机排序海报
+                const shuffledPosters = [...moviePosters].sort(() => Math.random() - 0.5);
+                
+                shuffledPosters.forEach(poster => {
+                    // 从文件名中提取电影标题（移除扩展名）
+                    const title = poster.replace(/\.(jpg|webp)$/, '');
+                    const posterUrl = poster;
+                    
+                    const posterDiv = document.createElement('div');
+                    posterDiv.className = 'flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20';
+                    posterDiv.style.width = '120px';
+                    posterDiv.style.height = '180px';
+                    
+                    posterDiv.innerHTML = `
+                        <img src="${posterUrl}" alt="${title}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    `;
+                    
+                    carousel.appendChild(posterDiv);
+                });
+            }
+
+            // 滚动播放效果
+            function startCarousel() {
+                const carousel = document.getElementById('poster-carousel');
+                let position = 0;
+                const speed = 1; 
+                
+                setInterval(() => {
+                    position += speed;
+                    if (position >= carousel.scrollWidth - carousel.clientWidth) {
+                        position = 0; 
+                        carousel.scrollTo(0, 0); 
+                    } else {
+                        carousel.scrollLeft = position;
+                    }
+                }, 40);
+            }
+
+            // 页面加载完成后初始化
+            window.addEventListener('DOMContentLoaded', () => {
+                generateRandomPosters();
+                startCarousel();
+            });
+        </script>
+
+        <!-- 2. 问答页 -->
+        <section id="quiz-page" class="hidden w-full max-w-lg mx-auto">
+            <!-- 进度条背景 -->
+            <div class="w-full h-[1px] bg-[#F2F2F2]/20 mb-12 relative">
+                <div id="progress-bar" class="absolute left-0 top-0 h-full bg-[#F2F2F2] transition-all duration-500" style="width: 0%"></div>
+                <div id="progress-text" class="absolute right-0 -top-6 text-xs text-[#F2F2F2]">01 / 10</div>
+            </div>
+
+            <!-- 问题容器 -->
+            <div id="question-container" class="space-y-10">
+                <!-- 动态注入问题 -->
+            </div>
+        </section>
+
+        <!-- 3. 分析加载页 -->
+        <section id="loading-page" class="hidden text-center space-y-6">
+            <div class="inline-block w-12 h-12 border border-[#F2F2F2]/30 border-t-[#F2F2F2] rounded-full animate-spin"></div>
+            <p id="loading-text" class="text-[#F2F2F2] text-sm tracking-widest animate-pulse">正在连接你的潜意识...</p>
+        </section>
+
+        <!-- 4. 结果页 -->
+        <section id="result-page" class="hidden w-full slide-up pb-20">
+            <!-- 深度分析卡片 -->
+            <div class="bg-[#BB2649] p-8 md:p-12 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.2)] mb-12 border border-[#F2F2F2]/20 text-center relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-[#F2F2F2]"></div>
+                
+                <!-- 显示用户昵称 -->
+                <p id="user-greeting" class="text-3xl md:text-4xl font-normal text-muse-text mb-2 tracking-wide"></p>
+
+                <h3 id="result-keyword" class="text-3xl md:text-4xl font-normal mb-6 text-muse-text mt-2"></h3>
+                <div class="w-12 h-[1px] bg-[#F2F2F2]/30 mx-auto mb-6"></div>
+                <p id="result-desc" class="text-muse-text leading-loose text-sm md:text-base text-justify opacity-90 tracking-wide">
+                    <!-- 动态内容 -->
+                </p>
+            </div>
+
+            <!-- 电影推荐列表 -->
+            <div id="movie-list" class="space-y-12">
+                <!-- 动态注入电影卡片 -->
+            </div>
+
+             <!-- 新增：更多匹配片单 (Rank 4-30) -->
+             <div id="more-movies-section" class="mt-20 hidden">
+                <div class="flex items-center mb-8">
+                    <h4 class="text-xl text-muse-text font-light tracking-widest border-l-2 border-[#F2F2F2] pl-4">更多完整片单</h4>
+                    <div class="h-[1px] bg-[#F2F2F2]/20 flex-1 ml-6"></div>
+                </div>
+                
+                <div class="overflow-x-auto no-scrollbar">
+                    <table class="w-full text-left text-muse-text/80 text-sm">
+                        <thead class="border-b border-[#F2F2F2]/20 text-xs uppercase tracking-wider opacity-50 eng-font">
+                            <tr>
+                                <th class="py-4 font-normal w-16">排名</th>
+                                <th class="py-4 font-normal">片名</th>
+                                <th class="py-4 font-normal w-24">年份</th>
+                                <th class="py-4 font-normal w-40">导演</th>
+                            </tr>
+                        </thead>
+                        <tbody id="more-movies-list" class="divide-y divide-[#F2F2F2]/10 eng-font">
+                            <!-- Dynamic Content -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center">
+                 <button onclick="location.reload()" class="text-xs text-muse-text hover:text-[#BB2649] border-b border-transparent hover:border-[#BB2649] hover:bg-[#F2F2F2] transition-all pb-1 uppercase tracking-widest px-2">
+                    再次回答
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 脚本逻辑 -->
+    <script>
+        // === 维度定义 ===
+        // I = Independence (独立/自我/成长)
+        // R = Romance/Emotion (情感/宿命/爱)
+        // A = Aesthetic/Art (艺术/氛围/美学)
+        // H = Healing/Warmth (治愈/生活/温暖)
+        // D = Dark/Complex (人性/压抑/反叛/深度)
+        
+        const questions = [
+            {
+                text: "此刻，如果可以短暂地逃离现实，你想去哪里？",
+                options: [
+                    { text: "充满烟火气的小镇，有阳光和刚出炉的面包香", type: "H" },
+                    { text: "下着雨的都市夜晚，霓虹灯倒映在积水中", type: "R" },
+                    { text: "空旷的荒野或海边，只有风的声音", type: "I" },
+                    { text: "一个没有任何规则、光怪陆离的梦境", type: "D" }
+                ]
+            },
+            {
+                text: "你认为女性最迷人的特质是？",
+                options: [
+                    { text: "那种在绝境中爆发的破坏力与重生", type: "D" },
+                    { text: "不依附于他人的自由与洒脱", type: "I" },
+                    { text: "细腻敏感，能感知万物情绪的温柔", type: "R" },
+                    { text: "一种超脱世俗、像艺术品般的魅力", type: "A" }
+                ]
+            },
+            {
+                text: "最近的生活里，你的主旋律是什么？",
+                options: [
+                    { text: "迷茫，正在努力寻找自己的位置", type: "I" },
+                    { text: "疲惫，渴望被生活温柔地拥抱", type: "H" },
+                    { text: "渴望连接，想寻找灵魂的共振", type: "R" },
+                    { text: "压抑，内心有一种想要打破一切的冲动", type: "D" }
+                ]
+            },
+            {
+                text: "你更偏爱哪种叙事的节奏？",
+                options: [
+                    { text: "缓慢流淌，像一首只有情绪的散文诗", type: "A" },
+                    { text: "跌宕起伏，充满人性的博弈与反转", type: "D" },
+                    { text: "轻松自然，像发生在身边的日常", type: "H" },
+                    { text: "深刻内省，大量的独白与自我对话", type: "I" }
+                ]
+            },
+            {
+                text: "如果你的生活是一幅画，它的色调是？",
+                options: [
+                    { text: "温暖的琥珀色或奶油白", type: "H" },
+                    { text: "浓郁的酒红，或深邃的夜蓝", type: "R" },
+                    { text: "极简的黑白，或低饱和度的灰", type: "I" },
+                    { text: "高对比度，色彩迷幻而强烈", type: "A" }
+                ]
+            },
+            {
+                text: "当你独处时，你通常会感到？",
+                options: [
+                    { text: "自在，终于可以完全做自己", type: "I" },
+                    { text: "落寞，希望能有人分享此刻", type: "R" },
+                    { text: "平静，享受观察世界的细节与美", type: "A" },
+                    { text: "焦虑，思绪纷乱，直面内心的阴影", type: "D" }
+                ]
+            },
+            {
+                text: "在一段亲密关系中，你最看重？",
+                options: [
+                    { text: "灵魂的绝对契合与理解", type: "R" },
+                    { text: "彼此独立，拥有各自的精神世界", type: "I" },
+                    { text: "那种宿命般的纠缠、张力与不可预测", type: "A" },
+                    { text: "像家人一样的陪伴、支持", type: "H" }
+                ]
+            },
+            {
+                text: "你希望一部电影结束后，带给你什么？",
+                options: [
+                    { text: "大哭一场后的释然与治愈", type: "H" },
+                    { text: "久久不能平静的震撼与反思", type: "D" },
+                    { text: "对视听美学的极致享受", type: "A" },
+                    { text: "获得一种重新出发、面对自我的力量", type: "I" }
+                ]
+            },
+            {
+                text: "选择一个物品作为你的象征：",
+                options: [
+                    { text: "一面有些裂痕的复古镜子", type: "D" },
+                    { text: "一本未写完的日记本", type: "I" },
+                    { text: "一束在角落静静枯萎的干花", type: "A" },
+                    { text: "一杯热气腾腾的红茶", type: "H" }
+                ]
+            },
+            {
+                text: "最后，关于故事的“结局”，你倾向于？",
+                options: [
+                    { text: "相信会有美好的结局，生活需要希望", type: "H" },
+                    { text: "悲剧往往更深刻，遗憾才是常态", type: "R" },
+                    { text: "不重要，重要的是主角是否完成了自我蜕变", type: "I" },
+                    { text: "结局应该是开放的，充满无限可能与遐想", type: "A" }
+                ]
+            }
+        ];
+
+        // 电影数据库 (30部 - 严格筛选 IMDb 7.0+ 小众电影)
+        const movies = [
+            // --- Romance & Emotion (R) - 6部 ---
+            {
+                title: "肉与灵",
+                engTitle: "On Body and Soul",
+                year: "2017",
+                director: "伊尔蒂科·茵叶蒂",
+                tags: ["R", "A"],
+                desc: "一部来自匈牙利的金熊奖佳作。讲述了两个性格孤僻的人，在现实中笨拙疏离，却在每晚的梦中化身为鹿相遇。影片以极其冷峻而唯美的镜头，探讨了孤独灵魂之间那份近乎神迹的共振与治愈。",
+                quote: "I had a dream about you.",
+                imdb: "7.5",
+                votes: "36k"
+            },
+            {
+                title: "世界上最糟糕的人",
+                engTitle: "The Worst Person in the World",
+                year: "2021",
+                director: "约阿希姆·提尔",
+                tags: ["R", "I"],
+                desc: "关于现代女性存在主义焦虑的精准素描。朱莉在30岁的门槛上，面对爱情、事业和自我认知的混乱。影片没有说教，只是真实地记录了女性在寻找自我过程中的迷茫、试错与那些不完美的瞬间。",
+                quote: "I love you. And I don't love you.",
+                imdb: "7.8",
+                votes: "90k"
+            },
+            {
+                title: "偶然与想象",
+                engTitle: "Wheel of Fortune and Fantasy",
+                year: "2021",
+                director: "滨口龙介",
+                tags: ["R", "A", "I"],
+                desc: "由三个短篇组成的影像诗。滨口龙介用精准的台词，揭示了女性情感生活中那些隐秘的、充满巧合的方面。关于前任、诱惑与身份互换，展现了女性在人际关系中微妙的心理博弈。",
+                quote: "Magic does not exist.",
+                imdb: "7.5",
+                votes: "13k"
+            },
+            {
+                title: "花神咖啡馆",
+                engTitle: "Café de Flore",
+                year: "2011",
+                director: "让-马克·瓦雷",
+                tags: ["R", "D"],
+                desc: "两段跨越时空的故事平行交织：一段是现代巴黎的爱情纠葛，一段是60年代母亲对唐氏综合征儿子的执念。影片探讨了爱的极致占有与放手，以及灵魂伴侣之间宿命般的羁绊，剪辑与配乐极具感染力。",
+                quote: "You are my soulmate.",
+                imdb: "7.3",
+                votes: "33k"
+            },
+            {
+                title: "同心难改",
+                engTitle: "I Can't Think Straight",
+                year: "2008",
+                director: "谢米姆·萨尔弗",
+                tags: ["R", "I"],
+                desc: "一部轻松却动人的女性爱情小品。虽然制作成本不高，但它真诚地探讨了文化冲突、宗教束缚与女性觉醒。讲述了两个来自不同文化背景的女性，如何在保守的环境中勇敢地确认彼此的心意。",
+                quote: "I follow my heart.",
+                imdb: "7.1",
+                votes: "15k"
+            },
+            {
+                title: "45周年",
+                engTitle: "45 Years",
+                year: "2015",
+                director: "安德鲁·海格",
+                tags: ["R", "D"],
+                desc: "在结婚45周年纪念日前夕，一封信打破了平静。夏洛特·兰普林用教科书般的演技，诠释了一位妻子如何在一周内，发现自己半个世纪的婚姻可能建立在一个巨大的谎言之上。冷静克制，却惊心动魄。",
+                quote: "We don't have to do this.",
+                imdb: "7.1",
+                votes: "36k"
+            },
+
+            // --- Independence & Growth (I) - 6部 ---
+            {
+                title: "小公女",
+                engTitle: "Microhabitat",
+                year: "2017",
+                director: "全高云",
+                tags: ["I", "H"],
+                desc: "在这个房价飞涨的时代，主角微笑做出了一个惊世骇俗的决定：为了留住最爱的威士忌和香烟，她主动放弃了房子，开始流浪。这是一部关于现代都市中“极简主义”生存哲学的寓言，既荒诞又温暖。",
+                quote: "Whiskey and cigarettes are my only home.",
+                imdb: "7.4",
+                votes: "6.5k"
+            },
+            {
+                title: "二十世纪女人",
+                engTitle: "20th Century Women",
+                year: "2016",
+                director: "迈克·米尔斯",
+                tags: ["I", "H"],
+                desc: "一封写给母亲和女性主义的轻盈情书。影片通过三位不同代际女性的生活切片，展现了她们如何在这个瞬息万变的时代中，教导一个男孩成长。对话充满智慧，探讨了女性在历史洪流中的自由与困惑。",
+                quote: "You don't need a man to raise a man.",
+                imdb: "7.3",
+                votes: "50k"
+            },
+            {
+                title: "蜂鸟",
+                engTitle: "House of Hummingbird",
+                year: "2018",
+                director: "金宝拉",
+                tags: ["I", "D"],
+                desc: "1994年的韩国，14岁少女恩熙在家庭冷暴力与学业压力中挣扎。影片以极其细腻的笔触，描绘了青春期那种无处安放的孤独与阵痛，以及一位女性老师的出现如何成为她生命中微弱却坚定的光。",
+                quote: "Let's meet before the world ends.",
+                imdb: "7.4",
+                votes: "4.2k"
+            },
+            {
+                title: "从不，很少，有时，总是",
+                engTitle: "Never Rarely Sometimes Always",
+                year: "2020",
+                director: "伊丽莎·希特曼",
+                tags: ["I", "D"],
+                desc: "两个少女，一个行李箱，一场前往纽约的堕胎之旅。影片没有刻意煽情，而是用极简的现实主义风格，记录了女性在困境中那种沉默而坚定的互助情谊。那场长镜头问答，是近年最震撼的女性时刻之一。",
+                quote: "He's not a monster. He's just a guy.",
+                imdb: "7.4",
+                votes: "20k"
+            },
+            {
+                title: "弗兰西斯·哈",
+                engTitle: "Frances Ha",
+                year: "2012",
+                director: "诺亚·鲍姆巴赫",
+                tags: ["I", "H"],
+                desc: "黑白影像下的纽约，一个27岁“没出息”女孩的生存实录。她不是传统的成功女主，她笨拙、甚至有点讨人厌，但她那份为了梦想横冲直撞的傻气，却是所有普通女孩最真实的写照。",
+                quote: "I like things that look like mistakes.",
+                imdb: "7.4",
+                votes: "80k"
+            },
+            {
+                title: "野马",
+                engTitle: "Mustang",
+                year: "2015",
+                director: "丹尼斯·盖姆泽·厄古文",
+                tags: ["I", "D"],
+                desc: "被称为土耳其版的《处女之死》。五姐妹因一次海边玩耍被视为不检点，被囚禁在家中等待包办婚姻。影片如同一首反抗的挽歌，展现了女性那如野马般无法被驯服的自由意志与生命力。",
+                quote: "We are free.",
+                imdb: "7.6",
+                votes: "40k"
+            },
+
+            // --- Aesthetic & Art (A) - 6部 ---
+            {
+                title: "在哥伦布",
+                engTitle: "Columbus",
+                year: "2017",
+                director: "郭共达",
+                tags: ["A", "H"],
+                desc: "建筑是凝固的音乐，而这部电影是流动的建筑。在现代主义建筑之城哥伦布，两个停滞不前的人通过对话相互治愈。每一帧画面都讲究极致的构图美学，沉静、克制，在空间与光影中探讨责任与留守。",
+                quote: "Do you like architecture?",
+                imdb: "7.2",
+                votes: "16k"
+            },
+            {
+                title: "雏菊",
+                engTitle: "Daisies",
+                year: "1966",
+                director: "维拉·希蒂洛娃",
+                tags: ["A", "D"],
+                desc: "捷克新浪潮的代表作，一部色彩斑斓的超现实主义狂想曲。两个名为玛丽的女孩决定在这个堕落的世界里一起堕落。影片充满了拼贴、滤镜和破坏美学，是对父权秩序与刻板印象最顽皮且激进的嘲弄。",
+                quote: "Does it matter? Everything is spoiled.",
+                imdb: "7.3",
+                votes: "20k"
+            },
+            {
+                title: "我是爱",
+                engTitle: "I Am Love",
+                year: "2009",
+                director: "卢卡·瓜达尼诺",
+                tags: ["A", "R"],
+                desc: "一部关于豪门主妇觉醒的感官盛宴。蒂尔达·斯文顿饰演的女主，在一次品尝美食的瞬间唤醒了沉睡的欲望。影片的视听语言极尽华丽，将美食、情欲与米兰的建筑融为一体，充满了古典的悲剧美。",
+                quote: "I exist.",
+                imdb: "7.0",
+                votes: "30k"
+            },
+            {
+                title: "奥兰多",
+                engTitle: "Orlando",
+                year: "1992",
+                director: "莎莉·波特",
+                tags: ["A", "I"],
+                desc: "根据伍尔夫名著改编。奥兰多在四百年的时间里，从男性变为女性，体验了两种性别的特权与束缚。蒂尔达·斯文顿跨越性别的惊世之美，让这部电影成为了一场关于时间、性别与永恒的华丽梦境。",
+                quote: "Same person. No difference at all.",
+                imdb: "7.2",
+                votes: "23k"
+            },
+            {
+                title: "独自夜归的女孩",
+                engTitle: "A Girl Walks Home Alone at Night",
+                year: "2014",
+                director: "安娜·莉莉·阿米普尔",
+                tags: ["A", "D"],
+                desc: "一部黑白风格的伊朗吸血鬼西部片。在充满工业废墟气息的“坏城”，一个身披黑纱的吸血鬼女孩在夜间滑滑板巡视。影片风格酷炫、迷幻，融合了摇滚与复古元素，展现了一种另类而孤独的浪漫。",
+                quote: "Are you a good boy?",
+                imdb: "6.9",
+                votes: "38k"
+            },
+            {
+                title: "同窗之爱",
+                engTitle: "Show Me Love",
+                year: "1998",
+                director: "卢卡斯·穆迪森",
+                tags: ["A", "R"],
+                desc: "瑞典小镇的青春躁动。讲述了两个性格迥异的女孩，如何在沉闷压抑的小镇中，通过一场意外的爱情找到彼此。影片摄影粗粝真实，情感却细腻动人，是关于初恋与自我认同最纯粹的表达。",
+                quote: "I want to do something.",
+                imdb: "7.5",
+                votes: "30k"
+            },
+
+            // --- Healing & Warmth (H) - 6部 ---
+            {
+                title: "夏日细语",
+                engTitle: "The Quiet Girl",
+                year: "2022",
+                director: "科尔姆·拜瑞德",
+                tags: ["H", "A"],
+                desc: "爱尔兰语电影，安静得像一阵微风。被忽视的女孩被送到远房亲戚家过暑假，在那里她第一次体会到了什么是爱与呵护。影片没有大起大落，只有生活细碎的声响，却能通过最纯粹的善意击中你内心最柔软的地方。",
+                quote: "Quiet people have the deepest thoughts.",
+                imdb: "7.7",
+                votes: "26k"
+            },
+            {
+                title: "小妈妈",
+                engTitle: "Petite Maman",
+                year: "2021",
+                director: "瑟琳·席安玛",
+                tags: ["H", "A"],
+                desc: "一个关于母女的奇幻童话。八岁的女孩在森林里遇见了童年时期的母亲，她们成为了朋友。影片以孩童般纯净的视角，化解了代际之间的隔阂与哀伤，是一次温柔至极的关于告别与理解的疗愈之旅。",
+                quote: "You didn't invent my sadness.",
+                imdb: "7.4",
+                votes: "20k"
+            },
+            {
+                title: "澄沙之味",
+                engTitle: "Sweet Bean",
+                year: "2015",
+                director: "河濑直美",
+                tags: ["H", "R"],
+                desc: "在樱花盛开的铜锣烧店，一位曾患麻风病的老奶奶用她对红豆的虔诚，治愈了迷茫的店长和女学生。影片节奏缓慢，充满了对自然万物的敬畏，告诉你即使是被边缘化的生命，也有其存在的意义与光辉。",
+                quote: "Listen to the beans.",
+                imdb: "7.4",
+                votes: "8k"
+            },
+            {
+                title: "脸庞，村庄",
+                engTitle: "Faces Places",
+                year: "2017",
+                director: "阿涅斯·瓦尔达 / 让·热内",
+                tags: ["H", "A"],
+                desc: "88岁的瓦尔达奶奶与33岁的艺术家JR，开着卡车穿梭在法国乡村。他们给普通人拍照，将巨大的肖像贴在墙上。这是一部关于凝视、相遇与衰老的纪录片，充满童心与温情，让人重新爱上这个世界。",
+                quote: "Eyes are for looking.",
+                imdb: "7.9",
+                votes: "24k"
+            },
+            {
+                title: "日日是好日",
+                engTitle: "Every Day a Good Day",
+                year: "2018",
+                director: "大森立嗣",
+                tags: ["H", "I"],
+                desc: "树木希林遗作。讲述了女主角典子学习茶道二十余年的心路历程。在日复一日的仪式中，她学会了倾听雨声，感受季节的流转，从茶道中悟出了“活在当下”的人生哲学，平淡中蕴含着巨大的力量。",
+                quote: "Taste the season.",
+                imdb: "7.1",
+                votes: "2k"
+            },
+            {
+                title: "第一头牛",
+                engTitle: "First Cow",
+                year: "2019",
+                director: "凯莉·雷查德",
+                tags: ["H", "I"],
+                desc: "美国西部拓荒史的另一种写法。没有枪战和牛仔，只有两个边缘人在森林里偷牛奶做饼干的友谊。凯莉·雷查德用极致的温柔和缓慢的节奏，讲述了一个关于生存、陪伴和创业的温暖寓言。",
+                quote: "History hasn't got here yet.",
+                imdb: "7.1",
+                votes: "20k"
+            },
+
+            // --- Dark & Complex (D) - 6部 ---
+            {
+                title: "系统破坏者",
+                engTitle: "System Crasher",
+                year: "2019",
+                director: "诺拉·芬沙伊德",
+                tags: ["D", "I"],
+                desc: "一位9岁女孩因为极度暴躁和创伤，被所有福利机构拒之门外，被称为“系统破坏者”。影片以极具爆发力的镜头，展现了一个渴望爱却不懂得如何去爱的孩子，对社会保障系统的无声控诉。",
+                quote: "I want to be with mom.",
+                imdb: "7.8",
+                votes: "15k"
+            },
+            {
+                title: "正发生",
+                engTitle: "Happening",
+                year: "2021",
+                director: "奥黛丽·迪万",
+                tags: ["D", "I"],
+                desc: "威尼斯金狮奖得主。讲述了60年代法国，一位女大学生为了前途冒险寻求非法堕胎的故事。影片以惊悚片般的节奏，记录了女性身体在社会禁忌下所承受的巨大痛楚与恐惧，真实得令人战栗。",
+                quote: "I'm just a girl.",
+                imdb: "7.4",
+                votes: "20k"
+            },
+            {
+                title: "珀尔",
+                engTitle: "Pearl",
+                year: "2022",
+                director: "缇·威斯特",
+                tags: ["D", "A"],
+                desc: "虽然是恐怖片，却是一场色彩斑斓的女性梦魇。在这个关于“想红”的扭曲故事里，米娅·哥特贡献了影史级别的表演。它揭示了在压抑的农场生活中，一个怀揣明星梦的女孩是如何一步步走向疯狂的。",
+                quote: "I'm a star!",
+                imdb: "7.0",
+                votes: "130k"
+            },
+            {
+                title: "圣蛛",
+                engTitle: "Holy Spider",
+                year: "2022",
+                director: "阿里·阿巴西",
+                tags: ["D", "I"],
+                desc: "根据真实连环杀人案改编。一位女记者深入伊朗圣城马什哈德，调查针对女性工作者的连环谋杀。影片不仅是犯罪惊悚片，更是对社会厌女症的深刻剖析，女主角的勇敢与环境的黑暗形成了强烈对比。",
+                quote: "I will find him.",
+                imdb: "7.3",
+                votes: "15k"
+            },
+            {
+                title: "圣奥梅尔",
+                engTitle: "Saint Omer",
+                year: "2022",
+                director: "阿丽斯·迪奥普",
+                tags: ["D", "I"],
+                desc: "根据真实杀婴案改编。一位女作家旁听了一位年轻母亲杀死女儿的庭审。影片打破了传统的道德审判，通过两个女性的对视，深入探讨了母性神话背后的重负、移民身份的撕裂以及女性共有的隐痛。",
+                quote: "I am a mother.",
+                imdb: "6.8",
+                votes: "5k"
+            },
+            {
+                title: "燃烧",
+                engTitle: "Burning",
+                year: "2018",
+                director: "李沧东",
+                tags: ["D", "A"],
+                desc: "虽然主角是男性，但女性在片中是核心的谜题与牺牲品。影片改编自村上春树小说，充满隐喻与悬疑。它探讨了阶级差异下年轻人的愤怒与无力，以及女性在男性凝视下“像晚霞一样消失”的悲剧。",
+                quote: "Tell the truth.",
+                imdb: "7.5",
+                votes: "85k"
+            }
+        ];
+
+        // 扩充后的 25 种结果文案配置 (Key: Primary + Secondary)
+        // I, R, A, H, D
+        const resultProfiles = {
+            // I (独立) 主导
+            "I-I": { keyword: "绝对自由的灵魂", desc: "你的内心如同一片广袤的原野，充满着无限可能。你极其看重个人边界，不愿被任何关系或规则定义。适合你的电影将带你见证一种彻底的独立，它或许孤独，但拥有最纯粹的自由。" },
+            "I-R": { keyword: "清醒的浪漫主义者", desc: "你渴望深刻的情感连接，但绝不会因此牺牲自我。你在爱中保持着清醒的独立性，寻找的是势均力敌的灵魂伴侣。适合你的电影讲述的正是这种既热烈又克制的爱，关于如何在爱人的眼中看见更完整的自己。" },
+            "I-A": { keyword: "孤独的审美家", desc: "你习惯在独处中构建自己的精神宫殿，对世界有着独特的审美滤镜。你享受疏离带来的观察者视角，从细微处捕捉美感。适合你的电影以极具风格化的影像，呼应你内心那份高傲而精致的孤独。" },
+            "I-H": { keyword: "温和的独行者", desc: "外表看起来独立坚强，内心深处却保留着一块柔软的角落。你习惯独自消化情绪，但也渴望被温柔地理解。适合你的电影像一阵微风，在不打扰你独立性的同时，轻轻抚平你内心的褶皱。" },
+            "I-D": { keyword: "暗夜的觉醒者", desc: "你拥有一种在废墟中重建秩序的力量。你深知世界的复杂与残酷，却依然选择直面它。适合你的电影充满力量感，展现了女性在绝境中爆发出的惊人能量，将与你灵魂深处的坚韧产生共振。" },
+
+            // R (情感) 主导
+            "R-R": { keyword: "纯粹的情感容器", desc: "你的灵魂由水构成，感知力极强，容易被感动，也容易受伤。在这个理性的世界里，你依然相信爱的救赎力量。适合你的电影情感浓度极高，它将替你流出那些未曾表达的泪水，让你在共鸣中获得释然。" },
+            "R-I": { keyword: "独立的深情者", desc: "你深情却不依附，温柔却有锋芒。你懂得爱人，更懂得爱自己。适合你的电影探讨了如何在亲密关系中保持自我的完整性，它会告诉你，最好的爱是两个独立灵魂的共舞。" },
+            "R-A": { keyword: "唯美的恋人", desc: "对你而言，爱是一种艺术形式。你追求的不仅是情感的交流，更是灵魂与感官的双重共振。适合你的电影如同一首流动的视觉情诗，用绝美的画面讲述动人的故事，满足你对浪漫的所有想象。" },
+            "R-H": { keyword: "温柔的共情者", desc: "你总是能敏锐地感知他人的情绪，像一个小太阳一样温暖周围的人。但别忘了，你也需要被呵护。适合你的电影温暖而治愈，它就像一个拥抱，告诉你：你的敏感与善良，是这世上最珍贵的礼物。" },
+            "R-D": { keyword: "破碎的诗意", desc: "你似乎迷恋那种带有痛感的爱，认为极致的情感往往伴随着某种程度的毁灭或遗憾。适合你的电影将带你潜入情感的深渊，体验那种令人心碎却又欲罢不能的凄美。" },
+
+            // A (美学) 主导
+            "A-A": { keyword: "极致的美学家", desc: "形式即内容，审美即信仰。你对平庸有着天然的排斥，生活对你来说应当是一场流动的盛宴。适合你的电影在视听语言上做到了极致，无需过问逻辑，只需沉浸在那如梦似幻的氛围中。" },
+            "A-I": { keyword: "疏离的观察者", desc: "你喜欢站在人群之外，冷眼旁观这个世界的喧嚣。你对人性和社会有着冷静的洞察，善于发现常人忽略的细节。适合你的电影气质冷峻而迷人，它将带你以一种抽离的视角，重新审视生活的荒诞与真实。" },
+            "A-R": { keyword: "感官的诗人", desc: "你用敏锐的感官捕捉世界，风的声音、光影的变化都能引起你内心的涟漪。适合你的电影充满了细腻的感官描写，它不讲大道理，只用色彩和声音，就能触动你内心最柔软的地方。" },
+            "A-H": { keyword: "生活的美学家", desc: "你擅长在平淡的日常中提炼诗意，一束花、一杯茶都是你对抗无聊的武器。适合你的电影节奏舒缓，画面清新，它会让你发现，原来最好的电影，就是生活本身。" },
+            "A-D": { keyword: "暗黑的美学家", desc: "你迷恋那种颓废、诡异甚至带点残缺的美。你认为光明往往伴随着阴影，而阴影中藏着更深刻的真相。适合你的电影风格独特，甚至有点怪诞，但那种直击灵魂的张力，正是你所寻找的。" },
+
+            // H (治愈) 主导
+            "H-H": { keyword: "纯白的治愈力", desc: "你拥有一种天然的亲和力，相信美好，向往简单。现在的你可能有些疲惫，只想在光影世界里做一个美梦。适合你的电影没有坏人，没有勾心斗角，只有纯粹的温暖与善意，是给心灵做的一次SPA。" },
+            "H-I": { keyword: "内向的守护者", desc: "你享受独处，喜欢在自己的小世界里默默积蓄能量。你不善言辞，但内心丰富而坚定。适合你的电影讲述了关于成长与自我接纳的故事，它会轻轻告诉你：按照自己的节奏生活，没关系。" },
+            "H-R": { keyword: "暖阳", desc: "你非常看重家庭和友谊，渴望像家人一样亲密无间的关系。你的幸福感往往来自于人与人之间的温情互动。适合你的电影充满了烟火气和人情味，看的时候记得备好纸巾，那是感动的泪水。" },
+            "H-A": { keyword: "田园牧歌", desc: "你向往那种远离尘嚣、回归自然的生活。你喜欢质朴、纯粹的东西。适合你的电影画面清新自然，节奏悠扬，仿佛带你走进了一幅淡雅的水彩画，让你暂时忘却城市的焦虑。" },
+            "H-D": { keyword: "裂痕中的光", desc: "你见过生活的阴暗面，所以更懂得光的可贵。你的治愈不是粉饰太平，而是带着伤痕依然热爱生活。适合你的电影虽然触及了痛苦，但最终指向的是和解与希望，给你一种深沉的抚慰。" },
+
+            // D (深度) 主导
+            "D-D": { keyword: "虚无主义者", desc: "你对这个世界有着深刻的怀疑，不相信廉价的鸡汤，敢于直面人性的虚无与荒诞。适合你的电影如同一把手术刀，冷酷地剖开社会的表象，虽然残酷，但那种清醒的痛感让你着迷。" },
+            "D-I": { keyword: "叛逆的思考者", desc: "你天生反骨，质疑一切既定的规则。你欣赏那些敢于打破常规、离经叛道的女性形象。适合你的电影充满张力，主角的每一次反抗都像是替你发出的一声呐喊。" },
+            "D-R": { keyword: "深渊的凝视者", desc: "你对人性中的爱欲与纠缠有着深刻的理解。你明白，最极致的爱往往与痛共生。适合你的电影深入挖掘了亲密关系中那些隐秘的角力与挣扎，看得人惊心动魄，又唏嘘不已。" },
+            "D-A": { keyword: "诡谲的艺术家", desc: "你喜欢非线性的叙事和充满隐喻的表达。你认为世界本就是混乱和复杂的，无需强求逻辑。适合你的电影像一个精巧的迷宫，充满了符号与暗示，等待着你去解码其中的深意。" },
+            "D-H": { keyword: "伤痕累累的智者", desc: "你历经沧桑，看透了人性的复杂，却依然选择慈悲。你不再追求激烈的冲突，而是更能体味那种千帆过尽后的淡然。适合你的电影基调有些沉重，但底色是温暖的，它讲的是关于原谅与救赎。" }
+        };
+
+        // === 逻辑控制 ===
+        let currentStep = 0;
+        let scores = { I: 0, R: 0, A: 0, H: 0, D: 0 };
+        let userName = "";
+
+        const appContainer = document.getElementById('app-container');
+        const landingPage = document.getElementById('landing-page');
+        const quizPage = document.getElementById('quiz-page');
+        const loadingPage = document.getElementById('loading-page');
+        const resultPage = document.getElementById('result-page');
+        const questionContainer = document.getElementById('question-container');
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+
+        function handleKeyPress(e) {
+            if (e.key === 'Enter') {
+                startQuiz();
+            }
+        }
+
+        function startQuiz() {
+            // 获取名字
+            const input = document.getElementById('user-name-input');
+            const val = input.value.trim();
+            if (!val) {
+                input.focus();
+                input.classList.add('border-red-400');
+                setTimeout(() => input.classList.remove('border-red-400'), 500);
+                return;
+            }
+            userName = val;
+
+            landingPage.classList.add('fade-out');
+            setTimeout(() => {
+                landingPage.classList.add('hidden');
+                quizPage.classList.remove('hidden');
+                quizPage.classList.add('fade-in');
+                renderQuestion();
+            }, 500);
+        }
+
+        function renderQuestion() {
+            if (currentStep >= questions.length) {
+                showAnalysis();
+                return;
+            }
+
+            const q = questions[currentStep];
+            const progress = ((currentStep + 1) / questions.length) * 100;
+            progressBar.style.width = `${progress}%`;
+            progressText.innerText = `${String(currentStep + 1).padStart(2, '0')} / 10`;
+
+            let html = `
+                <div class="fade-in">
+                    <h3 class="text-xl md:text-2xl font-medium leading-relaxed mb-8 text-muse-text">${q.text}</h3>
+                    <div class="space-y-4">
+            `;
+
+            q.options.forEach((opt, idx) => {
+                html += `
+                    <div onclick="handleAnswer('${opt.type}', this)" 
+                         class="option-card p-5 border cursor-pointer text-sm md:text-base transition-colors duration-300">
+                        <span class="mr-3 opacity-50 eng-font italic">0${idx + 1}</span>
+                        ${opt.text}
+                    </div>
+                `;
+            });
+
+            html += `</div></div>`;
+            questionContainer.innerHTML = html;
+        }
+
+        function handleAnswer(type, element) {
+            const allOptions = document.querySelectorAll('.option-card');
+            allOptions.forEach(opt => opt.classList.add('opacity-50', 'pointer-events-none'));
+            element.classList.remove('opacity-50');
+            element.classList.add('selected');
+
+            scores[type]++;
+
+            setTimeout(() => {
+                currentStep++;
+                renderQuestion();
+            }, 500);
+        }
+
+        function showAnalysis() {
+            quizPage.classList.add('hidden');
+            loadingPage.classList.remove('hidden');
+            loadingPage.classList.add('fade-in');
+
+            let loadingTexts = ["正在扫描小众片单库...", "排除过于主流的选项...", "寻找那部遗珠..."];
+            let textIdx = 0;
+            
+            const textInterval = setInterval(() => {
+                if(textIdx < loadingTexts.length) {
+                    document.getElementById('loading-text').innerText = loadingTexts[textIdx];
+                    textIdx++;
+                }
+            }, 800);
+
+            setTimeout(() => {
+                clearInterval(textInterval);
+                calculateAndRenderResult();
+                loadingPage.classList.add('hidden');
+                resultPage.classList.remove('hidden');
+                resultPage.classList.add('slide-up');
+            }, 2500);
+        }
+
+        // 辅助函数：解析投票数字符串 "36k" -> 36000, "2k" -> 2000
+        function parseVotes(votesStr) {
+            if (!votesStr) return 0;
+            const normalized = votesStr.toLowerCase().trim();
+            if (normalized.endsWith('k')) {
+                return parseFloat(normalized.replace('k', '')) * 1000;
+            }
+            return parseFloat(normalized) || 0;
+        }
+
+        function calculateAndRenderResult() {
+            // 1. 确定主导性格 (Result Keyword) - 确定性逻辑
+            // 优先级顺序：I > R > A > H > D (用于打破平局)
+            const priorityOrder = ['I', 'R', 'A', 'H', 'D'];
+            
+            // 对 scores 进行确定性排序
+            const sortedScores = Object.entries(scores).sort((a, b) => {
+                // 首先按分数降序排列
+                if (b[1] !== a[1]) {
+                    return b[1] - a[1];
+                }
+                // 如果分数相同，按预定义的优先级排序
+                const priorityA = priorityOrder.indexOf(a[0]);
+                const priorityB = priorityOrder.indexOf(b[0]);
+                return priorityA - priorityB;
+            });
+
+            const primaryType = sortedScores[0][0];
+            // 次要性格：如果有第二高分且分数大于0，则取第二；否则回退到主性格
+            const secondaryType = (sortedScores[1] && sortedScores[1][1] > 0) ? sortedScores[1][0] : primaryType;
+
+            const profileKey = `${primaryType}-${secondaryType}`;
+            // 兜底：如果组合键不存在（理论上不应该发生），使用双主性格
+            const analysisData = resultProfiles[profileKey] || resultProfiles[`${primaryType}-${primaryType}`];
+
+            // 渲染分析文案
+            document.getElementById('user-greeting').innerText = userName; 
+            document.getElementById('result-keyword').innerText = analysisData.keyword;
+            document.getElementById('result-desc').innerText = analysisData.desc;
+
+            // 2. 电影推荐算法：确定性加权匹配
+            
+            const scoredMovies = movies.map(movie => {
+                let matchScore = 0;
+                
+                // 遍历电影的标签进行加权匹配
+                movie.tags.forEach((tag, index) => {
+                    // 标签权重: 第1个标签权重为3，第2个为2
+                    let tagWeight = 3 - index;
+                    if (tagWeight < 1) tagWeight = 1;
+
+                    // 电影得分 += (用户在该维度的得分 * 标签权重)
+                    matchScore += (scores[tag] || 0) * tagWeight;
+                });
+
+                // 额外加分机制 (确定性)：
+                // 如果电影的主标签 === 用户的最高分维度，额外加分
+                if (movie.tags[0] === primaryType) {
+                    matchScore += 5; 
+                }
+                // 如果电影的主标签 === 用户的次高分维度，额外加分 (稍微少一点)
+                if (movie.tags[0] === secondaryType && primaryType !== secondaryType) {
+                    matchScore += 2;
+                }
+
+                // 移除所有随机扰动 (Math.random)
+                
+                return { ...movie, score: matchScore };
+            });
+
+            // 排序逻辑 (确定性)
+            // 1. 匹配分 (Desc)
+            // 2. IMDb 评分 (Desc)
+            // 3. 评分人数 (Desc)
+            // 4. 年份 (Desc)
+            const sortedMovies = scoredMovies.sort((a, b) => {
+                // 1. 匹配分
+                if (b.score !== a.score) {
+                    return b.score - a.score;
+                }
+                
+                // 2. IMDb 评分 (字符串转浮点)
+                const imdbA = parseFloat(a.imdb);
+                const imdbB = parseFloat(b.imdb);
+                if (imdbB !== imdbA) {
+                    return imdbB - imdbA;
+                }
+
+                // 3. 评分人数
+                const votesA = parseVotes(a.votes);
+                const votesB = parseVotes(b.votes);
+                if (votesB !== votesA) {
+                    return votesB - votesA;
+                }
+
+                // 4. 年份
+                return parseInt(b.year) - parseInt(a.year);
+            });
+
+            // 取前3
+            const topMovies = sortedMovies.slice(0, 3);
+            // 取4-30
+            const restMovies = sortedMovies.slice(3); 
+
+            // 电影标题到本地海报文件的映射
+            const moviePosterMap = {
+                "肉与灵": "肉与灵.jpg",
+                "世界上最糟糕的人": "世界上最糟糕的人.jpg",
+                "偶然与想象": "偶然与想象.webp",
+                "花神咖啡馆": "花神咖啡馆.jpg",
+                "同心难改": "同心难改.webp",
+                "45周年": "45周年.jpg",
+                "小公女": "小公女.webp",
+                "二十世纪女人": "二十世纪女人.jpg",
+                "蜂鸟": "蜂鸟.webp",
+                "从不，很少，有时，总是": "从不很少有时总是.jpg",
+                "弗兰西斯·哈": "弗兰西斯哈.jpg",
+                "野马": "野马.jpg",
+                "在哥伦布": "在哥伦布.webp",
+                "雏菊": "雏菊.webp",
+                "我是爱": "我是爱.webp",
+                "奥兰多": "奥兰多.webp",
+                "独自夜归的女孩": "独自夜归的女孩.webp",
+                "同窗的爱": "同窗的爱.webp",
+                "夏日细语": "夏日细语.webp",
+                "小妈妈": "小妈妈.webp",
+                "澄沙之味": "澄沙之味.webp",
+                "脸庞，村庄": "脸庞村庄.webp",
+                "日日是好日": "日日是好日.webp",
+                "第一头牛": "第一头牛.webp",
+                "系统破坏者": "系统破坏者.webp",
+                "正发生": "正发生.webp",
+                "珀尔": "珀尔.webp",
+                "圣蛛": "圣蛛.webp",
+                "圣奥梅尔": "圣奥梅尔.webp",
+                "燃烧": "燃烧.webp"
+            };
+
+            // 3. 渲染电影列表 (Top 3)
+            let moviesHtml = '';
+            topMovies.forEach((m, idx) => {
+                // 匹配本地海报文件
+                let posterUrl = moviePosterMap[m.title] || `https://placehold.co/400x600/881d36/FFFFFF/png?text=${encodeURIComponent(m.title)}`;
+                
+                moviesHtml += `
+                    <div class="flex flex-col md:flex-row gap-8 items-start border-b border-[#F2F2F2]/20 pb-12 last:border-0 fade-in" style="animation-delay: ${idx * 0.2}s">
+                        <div class="w-full md:w-1/3 aspect-[2/3] relative overflow-hidden group shrink-0 shadow-sm border border-[#F2F2F2]/10">
+                            <img src="${posterUrl}" alt="${m.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                            <div class="absolute top-2 left-2 bg-[#F2F2F2]/10 backdrop-blur-md px-2 py-1 flex flex-col items-center border border-[#F2F2F2]/20 shadow-lg">
+                                <span class="text-[#F2F2F2] font-bold text-xs">IMDb</span>
+                                <span class="text-[#f5c518] font-bold text-sm">${m.imdb}</span>
+                            </div>
+                            <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-[#F2F2F2]/20 to-transparent">
+                                <span class="text-[#F2F2F2] text-xs font-bold tracking-widest uppercase opacity-50 group-hover:opacity-100 transition-opacity duration-500">NO.0${idx+1}</span>
+                            </div>
+                        </div>
+                        <div class="flex-1 space-y-4 pt-2">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-2xl font-medium text-muse-text">${m.title}</h3>
+                                    <p class="text-sm text-muse-text/60 eng-font mt-1 tracking-wide">${m.year} <span class="mx-2 text-muse-text/40">/</span> ${m.director}</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex gap-2 flex-wrap">
+                                ${m.tags.map(tag => {
+                                    const tagNames = {I:"独立/成长", R:"情感/宿命", A:"美学/氛围", H:"治愈/生活", D:"深度/反叛"};
+                                    return `<span class="text-[10px] uppercase tracking-wider border border-[#F2F2F2]/30 px-2 py-1 text-muse-text/70 bg-transparent">${tagNames[tag]}</span>`;
+                                }).join('')}
+                            </div>
+
+                            <p class="text-muse-text/90 text-sm leading-7 text-justify font-light tracking-wide">
+                                ${m.desc}
+                            </p>
+                            
+                            <p class="text-[#F2F2F2]/50 text-xs italic mt-4 font-serif tracking-wider">"${m.quote}"</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('movie-list').innerHTML = moviesHtml;
+
+            // 4. Render Rest Movies (4-30)
+            if (restMovies.length > 0) {
+                document.getElementById('more-movies-section').classList.remove('hidden');
+                let restHtml = '';
+                restMovies.forEach((m, idx) => {
+                    restHtml += `
+                        <tr class="hover:bg-[#F2F2F2]/5 transition-colors duration-300">
+                            <td class="py-4 opacity-50 font-mono text-xs">0${idx + 4}</td>
+                            <td class="py-4 font-medium tracking-wide">${m.title}</td>
+                            <td class="py-4 opacity-60 font-mono text-xs">${m.year}</td>
+                            <td class="py-4 opacity-60 text-xs">${m.director}</td>
+                        </tr>
+                    `;
+                });
+                document.getElementById('more-movies-list').innerHTML = restHtml;
+            } else {
+                document.getElementById('more-movies-section').classList.add('hidden');
+            }
+        }
+
+    </script>
+</body>
+</html>
