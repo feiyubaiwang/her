@@ -196,73 +196,103 @@
                 <!-- 海报滚动播放卡片 -->
                 <div class="mt-12 w-full border border-[#F2F2F2]/30 p-6 bg-transparent backdrop-blur-sm">
                     <div id="poster-carousel" class="flex overflow-x-auto space-x-4 py-2 no-scrollbar" style="min-height: 180px;">
-                        <!-- 动态生成本地电影海报 -->
+                        <!-- 静态嵌入海报图片，确保页面刷新时立即出现 -->
+                        <div class="flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20" style="width: 120px; height: 180px;">
+                            <img src="45周年.jpg" alt="45周年" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20" style="width: 120px; height: 180px;">
+                            <img src="世界上最糟糕的人.jpg" alt="世界上最糟糕的人" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20" style="width: 120px; height: 180px;">
+                            <img src="二十世纪女人.jpg" alt="二十世纪女人" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20" style="width: 120px; height: 180px;">
+                            <img src="从不很少有时总是.jpg" alt="从不很少有时总是" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20" style="width: 120px; height: 180px;">
+                            <img src="偶然与想象.webp" alt="偶然与想象" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20" style="width: 120px; height: 180px;">
+                            <img src="同心难改.webp" alt="同心难改" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20" style="width: 120px; height: 180px;">
+                            <img src="同窗的爱.webp" alt="同窗的爱" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20" style="width: 120px; height: 180px;">
+                            <img src="圣奥梅尔.webp" alt="圣奥梅尔" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20" style="width: 120px; height: 180px;">
+                            <img src="圣蛛.webp" alt="圣蛛" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20" style="width: 120px; height: 180px;">
+                            <img src="在哥伦布.webp" alt="在哥伦布" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20" style="width: 120px; height: 180px;">
+                            <img src="夏日细语.webp" alt="夏日细语" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20" style="width: 120px; height: 180px;">
+                            <img src="奥兰多.webp" alt="奥兰多" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20" style="width: 120px; height: 180px;">
+                            <img src="小公女.webp" alt="小公女" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20" style="width: 120px; height: 180px;">
+                            <img src="小妈妈.webp" alt="小妈妈" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20" style="width: 120px; height: 180px;">
+                            <img src="弗兰西斯哈.jpg" alt="弗兰西斯哈" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20" style="width: 120px; height: 180px;">
+                            <img src="我是爱.webp" alt="我是爱" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20" style="width: 120px; height: 180px;">
+                            <img src="日日是好日.webp" alt="日日是好日" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20" style="width: 120px; height: 180px;">
+                            <img src="正发生.webp" alt="正发生" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20" style="width: 120px; height: 180px;">
+                            <img src="澄沙之味.webp" alt="澄沙之味" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20" style="width: 120px; height: 180px;">
+                            <img src="燃烧.webp" alt="燃烧" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20" style="width: 120px; height: 180px;">
+                            <img src="独自夜归的女孩.webp" alt="独自夜归的女孩" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20" style="width: 120px; height: 180px;">
+                            <img src="珀尔.webp" alt="珀尔" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20" style="width: 120px; height: 180px;">
+                            <img src="第一头牛.webp" alt="第一头牛" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20" style="width: 120px; height: 180px;">
+                            <img src="系统破坏者.webp" alt="系统破坏者" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20" style="width: 120px; height: 180px;">
+                            <img src="肉与灵.jpg" alt="肉与灵" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20" style="width: 120px; height: 180px;">
+                            <img src="脸庞村庄.webp" alt="脸庞村庄" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20" style="width: 120px; height: 180px;">
+                            <img src="花神咖啡馆.jpg" alt="花神咖啡馆" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20" style="width: 120px; height: 180px;">
+                            <img src="蜂鸟.webp" alt="蜂鸟" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20" style="width: 120px; height: 180px;">
+                            <img src="野马.jpg" alt="野马" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20" style="width: 120px; height: 180px;">
+                            <img src="雏菊.webp" alt="雏菊" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <script>
-            // 本地电影海报列表
-            const moviePosters = [
-                "45周年.jpg",
-                "世界上最糟糕的人.jpg",
-                "二十世纪女人.jpg",
-                "从不很少有时总是.jpg",
-                "偶然与想象.webp",
-                "同心难改.webp",
-                "同窗的爱.webp",
-                "圣奥梅尔.webp",
-                "圣蛛.webp",
-                "在哥伦布.webp",
-                "夏日细语.webp",
-                "奥兰多.webp",
-                "小公女.webp",
-                "小妈妈.webp",
-                "弗兰西斯哈.jpg",
-                "我是爱.webp",
-                "日日是好日.webp",
-                "正发生.webp",
-                "澄沙之味.webp",
-                "燃烧.webp",
-                "独自夜归的女孩.webp",
-                "珀尔.webp",
-                "第一头牛.webp",
-                "系统破坏者.webp",
-                "肉与灵.jpg",
-                "脸庞村庄.webp",
-                "花神咖啡馆.jpg",
-                "蜂鸟.webp",
-                "野马.jpg",
-                "雏菊.webp"
-            ];
-
-            // 生成随机排序的海报
-            function generateRandomPosters() {
-                const carousel = document.getElementById('poster-carousel');
-                carousel.innerHTML = '';
-                
-                // 随机排序海报
-                const shuffledPosters = [...moviePosters].sort(() => Math.random() - 0.5);
-                
-                shuffledPosters.forEach(poster => {
-                    // 从文件名中提取电影标题（移除扩展名）
-                    const title = poster.replace(/\.(jpg|webp)$/, '');
-                    const posterUrl = poster;
-                    
-                    const posterDiv = document.createElement('div');
-                    posterDiv.className = 'flex-shrink-0 w-20 h-30 relative overflow-hidden border border-[#F2F2F2]/20';
-                    posterDiv.style.width = '120px';
-                    posterDiv.style.height = '180px';
-                    
-                    posterDiv.innerHTML = `
-                        <img src="${posterUrl}" alt="${title}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
-                    `;
-                    
-                    carousel.appendChild(posterDiv);
-                });
-            }
-
             // 滚动播放效果
             function startCarousel() {
                 const carousel = document.getElementById('poster-carousel');
@@ -282,7 +312,6 @@
 
             // 页面加载完成后初始化
             window.addEventListener('DOMContentLoaded', () => {
-                generateRandomPosters();
                 startCarousel();
             });
         </script>
@@ -342,7 +371,6 @@
                                 <th class="py-4 font-normal w-16">排名</th>
                                 <th class="py-4 font-normal">片名</th>
                                 <th class="py-4 font-normal w-24">年份</th>
-                                <th class="py-4 font-normal w-40">导演</th>
                             </tr>
                         </thead>
                         <tbody id="more-movies-list" class="divide-y divide-[#F2F2F2]/10 eng-font">
@@ -1148,7 +1176,6 @@
                             <td class="py-4 opacity-50 font-mono text-xs">0${idx + 4}</td>
                             <td class="py-4 font-medium tracking-wide">${m.title}</td>
                             <td class="py-4 opacity-60 font-mono text-xs">${m.year}</td>
-                            <td class="py-4 opacity-60 text-xs">${m.director}</td>
                         </tr>
                     `;
                 });
